@@ -23,15 +23,16 @@ def DataProcess(imageData:vtk.vtkImageData,
     # 获取标签
     vtkdata=imageData.GetPointData().GetScalars()
     labels=np.delete(np.unique(vtk_to_numpy(vtkdata)),0)
-    morph=vtk.vtkImageContinuousDilate3D()
-    morph.SetKernelSize(2,2,2)
-    morph.SetInputData(imageData)
-    morph.Update()
     # 转换为多边形表面数据
     Surface=vtk.vtkAppendPolyData()
     for label in labels:
+        #morph=vtk.vtkImageDilateErode3D()
+        #morph.SetKernelSize(2,2,2)
+        #morph.SetDilateValue(label)
+        #morph.SetInputData(imageData)
+        #morph.Update()
         contour =vtk.vtkDiscreteMarchingCubes()
-        contour.SetInputData(morph.GetOutput())
+        contour.SetInputData(imageData)
         contour.SetValue(0,label)
         contour.ComputeScalarsOn()
         contour.Update()
@@ -230,8 +231,8 @@ def Render2Image(InputDir:str,
 def Execute(argv):
     '''运行渲染程序'''
     # 设置初始保存文件名
-    vesselSaveFileName='volume-skeleton-vessel.png'
-    liverSaveFileName='volume-overview-liver.png'
+    vesselSaveFileName='Figure/volume-skeleton-vessel.png'
+    liverSaveFileName='Figure/volume-overview-liver.png'
     InputDict=argv[1]
     OutputDict=argv[2]
     Render2Image(InputDict,vesselSaveFileName,OutputDict,opacity=[0,1.0])
