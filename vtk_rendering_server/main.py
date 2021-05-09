@@ -1,7 +1,8 @@
 """
-@Author: Daryl.Xu
+@author: Daryl.Xu
 """
 from flask import Flask, request
+import os
 
 
 app = Flask(__name__)
@@ -16,7 +17,11 @@ def hello():
 def render():
     data_id= request.args.get('id')
     # TODO render the vtk file
-    print(f'the data id: {data_id}')
+    # print(f'the data id: {data_id}')
+    # os.system('ls /')
+    cmd = f'/opt/paraview/bin/pvpython ./script/render.py {data_id} {data_id}'
+    print(cmd)
+    os.system(cmd)
     return 'success'
 
 
