@@ -1,5 +1,5 @@
 """
-@Author: Xiong Minghua <xiongminghua@zyheal.com>
+@author: Xiong Minghua <xiongminghua@zyheal.com>, Daryl.Xu <xuziqiang@zyheal.com>
 """
 import vtk
 import os
@@ -222,6 +222,9 @@ def Render2Image(InputDir:str,
     wif.ReadFrontBufferOff()
     wif.Update()
     saveAbsPath=os.path.join(SaveDir,SavePicName)
+
+    os.makedirs(os.path.dirname(saveAbsPath), exist_ok=True)
+    
     # 直接将渲染结果保存为PNG格式的图像
     writer =vtk.vtkPNGWriter()
     writer.SetFileName(saveAbsPath)
@@ -230,7 +233,7 @@ def Render2Image(InputDir:str,
 
 def Execute(argv):
     '''运行渲染程序'''
-    # 设置初始保存文件名
+    # 设置初始保存文件名    
     vesselSaveFileName='Figure/volume-skeleton-vessel.png'
     liverSaveFileName='Figure/volume-overview-liver.png'
     InputDict=argv[1]
