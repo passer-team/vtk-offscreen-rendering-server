@@ -168,8 +168,8 @@ def Render2Image(InputDir:str,
         Liver2Image(savepath,surfaceData,vesselData)
     '''
     # 设置默认参数
-    vesselFileName='mDIXON-All_vessel_label.nii.gz'
-    couinaudFileName='mDIXON-All_couinaud.nii.gz'
+    vesselFileName='pred_vessel_couinaud.nii'
+    couinaudFileName='pred_couinaud.nii'
     # 绝对路径
     couinaudFilePath=os.path.join(InputDir,couinaudFileName)
     vesselFilePath=os.path.join(InputDir,vesselFileName)
