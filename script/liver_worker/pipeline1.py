@@ -237,7 +237,7 @@ def Execute(argv):
     vesselSaveFileName='Figure/volume-skeleton-vessel.png'
     liverSaveFileName='Figure/volume-overview-liver.png'
     InputDict=argv[1]
-    OutputDict=argv[2]
+    OutputDict=argv[1]
     Render2Image(InputDict,vesselSaveFileName,OutputDict,opacity=[0,1.0])
     Render2Image(InputDict,liverSaveFileName,OutputDict)
 
