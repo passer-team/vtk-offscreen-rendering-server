@@ -1,7 +1,7 @@
 FROM kitware/paraview:pv-v5.8.0-osmesa-py3
 
 LABEL org.label-schema.name="vtk-rendering-server" \
-    org.label-schema.schema-version="0.0.2"
+    org.label-schema.schema-version="1.0.0"
 ENV LANG=en_US.utf8
 
 USER root
